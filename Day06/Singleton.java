@@ -2,18 +2,26 @@
 */
 
 class Singleton{
-    static int num;
+    private static Singleton instance;
 
     private Singleton(){
-        num = 100;
+        System.out.println("Instance is created");
     }
 
-    public static int getSingleton(){
-        return num;
+    public static Singleton getSingleton(){
+        if(instance==null){
+            instance = new Singleton();
+        }
+        return instance;
     }
 
     public static void main(String[] args) {
-        Singleton obj = new Singleton();
-        System.out.println(obj.getSingleton());
+        Singleton obj =  Singleton.getSingleton();
+        Singleton obj1 = Singleton.getSingleton();
+        if(obj==obj1){
+            System.out.println("Both instances is Same");
+        }else{
+            System.out.println("Instances are different");
+        }
     }
 }
